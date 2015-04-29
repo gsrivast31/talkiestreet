@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">Add Movie</div>
+    <div class="panel-body">
+      <form class="form" method="post" ng-submit="addMovie()" name="addForm">
+        <div class="form-group" ng-class="{ 'has-error' : addForm.movieUrl.$invalid && addForm.movieUrl.$dirty }">
+          <label class="control-label">Url</label>
+          <input class="form-control" type="text" name="movieUrl" ng-model="movieUrl" placeholder="Enter movie url" required autofocus>
+          <div class="help-block text-danger" ng-if="addForm.movieUrl.$dirty" ng-messages="addForm.movieUrl.$error">
+            <div ng-message="required">Url is required.</div>
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit" ng-disabled="addForm.$invalid">Add</button>
+      </form>
+    </div>
+  </div>
+</div>

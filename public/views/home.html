@@ -1,0 +1,44 @@
+<div class="jumbotron">
+    <div class="container">
+        <!-- <ul class="alphabet">
+            <li ng-repeat="char in alphabet">
+                <span ng-click="filterByAlphabet(char)">{{char}}</span>
+            </li>
+        </ul> -->
+        <ul class="languages">
+            <li ng-repeat="language in languages">
+                <span ng-click="filterByLanguage(language)">{{language}}</span>
+            </li>
+        </ul>
+        <ul class="genres">
+            <li ng-repeat="genre in genres">
+                <span ng-click="filterByGenre(genre)">{{genre}}</span>
+            </li>
+        </ul>
+        
+    </div>
+</div>
+
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            {{headingTitle}}
+            <div class="pull-right">
+                <input class="search" type="text" ng-model="query.title" placeholder="Search...">
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row show-list">
+                <div class="fade-repeat col-xs-4 col-md-3" ng-repeat="movie in movies | filter:query | orderBy:'duration':true">
+                    <a href="/movies/{{movie.videoId}}">
+                        <img class="img-rounded" ng-src="{{movie.thumbnail_medium}}" width="100%"/>
+                    </a>
+                    <div class="text-center">
+                        <a href="/movies/{{movie.videoId}}">{{movie.title}}</a>
+                        <p class="text-muted">Duration: {{movie.duration}} minutes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
