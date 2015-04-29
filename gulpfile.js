@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var uncss = require('gulp-uncss');
 var csso = require('gulp-csso');
 var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
@@ -12,6 +13,14 @@ gulp.task('sass', function() {
   gulp.src('public/stylesheets/style.scss')
     .pipe(plumber())
     .pipe(sass())
+    .pipe(uncss({
+      html: [
+        'public/index.html',
+        'public/views/add.html',
+        'public/views/detail.html',
+        'public/views/home.html',
+      ]
+    }))
     .pipe(csso())
     .pipe(gulp.dest('public/stylesheets'));
 });
@@ -44,4 +53,6 @@ gulp.task('watch', function() {
   gulp.watch(['public/**/*.js', '!public/app.min.js', '!public/templates.js', '!public/vendor'], ['compress']);
 });
 
+gulp.task('build', ['sass', 'compress', 'templates']);
 gulp.task('default', ['sass', 'compress', 'templates', 'watch']);
+

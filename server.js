@@ -1,3 +1,5 @@
+var compress = require('compression')
+
 var path = require('path');
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -72,15 +74,16 @@ var User = mongoose.model('User', userSchema);
 var Movie = mongoose.model('Movie', movieSchema);
 var UnVerifiedMovie = mongoose.model('NewMovie', unVerifiedMovieSchema);
 
-mongoose.connect('mongodb://localhost:27017/talkiestreet');
-
+//mongoose.connect('mongodb://localhost:27017/talkiestreet');
+mongoose.connect('mongodb://admin:talkie$treet@ds031842.mongolab.com:31842/talkiestreet');
 var app = express();
 
 app.set('port', process.env.PORT || 3000);
+app.use(compress())
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: 86400000 }));
 
 /*function ensureAuthenticated(req, res, next) {
   if (req.headers.authorization) {
@@ -204,7 +207,6 @@ app.get('/api/users', function(req, res, next) {
 
 
 app.get('/api/movies', function(req, res, next) {
-  console.log('Movies request');
   var query = Movie.find();
   if (req.query.genre) {
     query.where({ genre: req.query.genre });
@@ -222,8 +224,6 @@ app.get('/api/movies', function(req, res, next) {
 });
 
 app.get('/api/movies/:_id', function(req, res, next) {
-  console.log('Movie request');
-  console.log(req.params._id);
   Movie.findById(req.params._id, function(err, movie) {
     if (err) return next(err);
     res.send(movie);

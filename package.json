@@ -2,13 +2,15 @@
   "name": "talkiestreet",
   "version": "0.0.0",
   "scripts": {
-    "test": "karma start public/test/karma.conf.js"
+    "test": "karma start public/test/karma.conf.js",
+    "start": "node server.js"
   },
   "dependencies": {
     "agenda": "^0.6.10",
     "async": "^0.8.0",
     "bcryptjs": "^0.7.12",
     "body-parser": "^1.0.0",
+    "compression": "^1.4.3",
     "express": "^4.0.0",
     "jwt-simple": "^0.2.0",
     "lodash": "^2.4.1",
@@ -30,6 +32,7 @@
     "gulp-plumber": "^0.6.1",
     "gulp-sass": "^0.7.1",
     "gulp-uglify": "^0.3.0",
+    "gulp-uncss": "^1.0.1",
     "karma": "^0.12.19",
     "karma-chrome-launcher": "^0.1.4",
     "karma-jasmine": "^0.1.5",
