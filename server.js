@@ -17,7 +17,7 @@ var xml2js = require('xml2js');
 
 var _ = require('lodash');
 
-var tokenSecret = 'your unique secret';
+var tokenSecret = 'talkiestreet_memoirlabs';
 
 var unVerifiedMovieSchema = new mongoose.Schema({
   movieUrl: String,
