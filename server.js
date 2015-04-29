@@ -18,12 +18,10 @@ var _ = require('lodash');
 var tokenSecret = 'your unique secret';
 
 var unVerifiedMovieSchema = new mongoose.Schema({
-  _id: Number,
   movieUrl: String,
 });
 
 var movieSchema = new mongoose.Schema({
-  _id: Number,
   videoId: String,
   language: String,
   title: String,
@@ -84,7 +82,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(express.static(path.join(__dirname, 'public')));
 
-function ensureAuthenticated(req, res, next) {
+/*function ensureAuthenticated(req, res, next) {
   if (req.headers.authorization) {
     var token = req.headers.authorization.split(' ')[1];
     try {
@@ -202,7 +200,7 @@ app.get('/api/users', function(req, res, next) {
     res.send({ available: !user });
   });
 });
-
+*/
 
 
 app.get('/api/movies', function(req, res, next) {
@@ -225,21 +223,15 @@ app.get('/api/movies', function(req, res, next) {
 
 app.get('/api/movies/:_id', function(req, res, next) {
   console.log('Movie request');
-  console.log(_id);
-  /*Movie.findById(req.params.id, function(err, movie) {
+  console.log(req.params._id);
+  Movie.findById(req.params._id, function(err, movie) {
     if (err) return next(err);
     res.send(movie);
-  });*/
-  var query = Movie.findOne();
-  query.where( {videoId: _id});
-  query.exec(function(err, movie) {
-    if (err) return next(err);
-    res.send(movie);
-  });
+  });  
 });
 
 app.post('/api/movies', function (req, res, next) {
-  var newMovie = new NewMovie({
+  var newMovie = new UnVerifiedMovie({
     movieUrl: req.body.movieUrl
   });
 

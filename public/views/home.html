@@ -30,11 +30,11 @@
         <div class="panel-body">
             <div class="row show-list">
                 <div class="fade-repeat col-xs-4 col-md-3" ng-repeat="movie in movies | filter:query | orderBy:'duration':true">
-                    <a href="/movies/{{movie.videoId}}">
-                        <img class="img-rounded" ng-src="{{movie.thumbnail_medium}}" width="100%"/>
+                    <a href="/movies/{{movie._id}}">
+                        <img class="img show-thumbnail" ng-src="{{movie.thumbnail_medium}}" width="100%"/>
                     </a>
-                    <div class="text-center">
-                        <a href="/movies/{{movie.videoId}}">{{movie.title}}</a>
+                    <div class="text-center show-details">
+                        <a href="/movies/{{movie._id}}">{{movie.title}}</a>
                         <p class="text-muted">Duration: {{movie.duration}} minutes</p>
                     </div>
                 </div>

@@ -2,26 +2,13 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="media">
-        <!-- <div class="pull-left">
-          <img class="media-object img-rounded" ng-src="{{show.poster}}">
-        </div> -->
         <div class="media-body">
           <h2 class="media-heading">
             {{movie.title}}
-            <!--<span class="pull-right text-danger"><span class="ion-heart"></span> {{show.rating}}</span>-->
           </h2>
-          <!--<h4 ng-show="show.status === 'Continuing'">
-            <span class="ion-calendar"></span>
-            {{show.airsDayOfWeek}} <em>{{show.airsTime}}</em> on
-            {{show.network}}
-          </h4>
-          <h4 ng-show="show.status === 'Ended'">
-            Status: <span class="text-danger">Ended</span>
-          </h4>-->
           <p>{{movie.description}}</p>
-          <div class="pull-left">
-            <!-- <img class="media-object img-rounded" ng-src="{{show.poster}}"> -->
-            <iframe width="100%" height="315" src="{{movie.embed_url}}}" frameborder="0" allowfullscreen></iframe>
+          <div class="text-center">
+            <iframe width="100%" height="480" src="{{trustSrc(movie.embed_url)}}" frameborder="0" allowfullscreen></iframe>
           </div>
         </div>
       </div>
