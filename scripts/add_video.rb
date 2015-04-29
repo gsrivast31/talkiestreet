@@ -4,12 +4,12 @@ require 'pp'
 
 client = Mongo::Client.new('mongodb://admin:talkie$treet@ds031842.mongolab.com:31842/talkiestreet')
 
-video = VideoInfo.new("http://www.youtube.com/watch?v=mZqGqE0D0n4")
+video = VideoInfo.new("https://www.youtube.com/watch?v=mZqGqE0D0n4")
 
 url = video.embed_url
 
 if url.start_with?('http') === false
-  url = 'http:' + url
+  url = 'https:' + url
 end
 
 result = client[:movies].insert_many([
