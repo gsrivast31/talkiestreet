@@ -4,26 +4,38 @@ require 'pp'
 
 client = Mongo::Client.new('mongodb://admin:talkie$treet@ds031842.mongolab.com:31842/talkiestreet')
 
-video = VideoInfo.new("https://www.youtube.com/watch?v=mZqGqE0D0n4")
+fileName = ARGV[0]
 
-url = video.embed_url
+File.readlines(fileName).each do |line|
 
-if url.start_with?('http') === false
-  url = 'https:' + url
+ values = line.split(",")
+ url = values[0]
+ language = values[1]
+ category = values[2]
+
+ #puts url, language, category 
+ video = VideoInfo.new(url)
+
+ url = video.embed_url
+
+ if url.start_with?('http') === false
+   url = 'https:' + url
+ end
+
+ result = client[:movies].insert_many([
+   { :videoId => video.video_id,
+     :language => language,
+     :genre => [category],
+     :title => video.title,
+     :provider => video.provider,
+     :description => video.description,
+     :duration => video.duration,
+     :thumbnail_small => video.thumbnail_small,
+     :thumbnail_medium => video.thumbnail_medium,
+     :embed_url => url
+   }
+ ])
+
+ result.n
+
 end
-
-result = client[:movies].insert_many([
-  { :videoId => video.video_id,
-    :language => 'English',
-    :genre => ['Travel'],
-    :title => video.title,
-    :provider => video.provider,
-    :description => video.description,
-    :duration => video.duration,
-    :thumbnail_small => video.thumbnail_small,
-    :thumbnail_medium => video.thumbnail_medium,
-    :embed_url => url
-  }
-])
-
-result.n

@@ -6,10 +6,10 @@ angular.module('MyApp')
     $scope.genres = ['Action', 'Adventure', 'Animation', 'Children', 'Comedy',
       'Crime', 'Documentary', 'Drama', 'Family', 'Fantasy', 'Food',
       'Home and Garden', 'Horror', 'Mini-Series', 'Mystery', 'News', 'Reality',
-      'Romance', 'Sci-Fi', 'Sport', 'Suspense', 'Talk Show', 'Thriller',
+      'Romance', 'Satire', 'Sci-Fi', 'Sport', 'Suspense', 'Talk Show', 'Thriller',
       'Travel'];
     $scope.languages = ['English', 'Hindi', 'French', 'Spanish', 'German',
-      'Chinese'];
+      'Chinese', 'Korean'];
     $scope.headingTitle = 'Top 12 Movies';
     $scope.movies = Movie.query();
     $scope.filterByGenre = function(genre) {
