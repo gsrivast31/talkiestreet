@@ -10,7 +10,7 @@ angular.module('MyApp')
       'Travel'];
     $scope.languages = ['English', 'Hindi', 'French', 'Spanish', 'German',
       'Chinese', 'Korean'];
-    $scope.headingTitle = 'Top 12 Movies';
+    $scope.headingTitle = 'Top Movies';
     $scope.movies = Movie.query();
     $scope.filterByGenre = function(genre) {
       $scope.movies = Movie.query({ genre: genre });

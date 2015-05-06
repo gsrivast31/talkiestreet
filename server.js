@@ -214,9 +214,9 @@ app.get('/api/movies', function(req, res, next) {
     query.where({ name: new RegExp('^' + '[' + req.query.alphabet + ']', 'i') });
   } else if (req.query.language) {
     query.where({ language: req.query.language });
-  } else {
+  } /*else {
     query.limit(12);
-  }
+  }*/
   query.exec(function(err, movies) {
     if (err) return next(err);
     res.send(movies);
